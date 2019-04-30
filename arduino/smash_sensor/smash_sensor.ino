@@ -86,11 +86,10 @@ float checkPressure(){
   float maxValue = 0.0;
   
   while (i < size_axes){
-    if(maxValue > axes[i]) {
-      maxValue = maxValue;
-    } else {
+    if(maxValue < axes[i]) {
       maxValue = axes[i];
     }
+    
     i++;
   }
   

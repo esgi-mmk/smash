@@ -23,6 +23,7 @@ void oscEvent(OscMessage theOscMessage) {
   //print("Val 1 received" + theOscMessage.get(0).floatValue());
   //print("Val 1 received" + theOscMessage.get(1).floatValue());
   //println("Val 1 received" + theOscMessage.get(2).floatValue());
-  print(theOscMessage.addrPattern());
-  println(theOscMessage.arguments().length);
+  print("maxValue : ");
+  println(theOscMessage.get(0).floatValue());
+  
 }
