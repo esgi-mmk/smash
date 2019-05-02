@@ -16,6 +16,7 @@ import netP5.*;
 
 //Object
 FightScene fightScene;
+FightSystem fightSystem;
 OscP5 oscP5;
 
 
@@ -34,6 +35,9 @@ void setup() {
   
   /* start oscP5, listening for incoming messages at port 4559 */
   oscP5 = new OscP5(this,4559);
+  
+  //
+  fightSystem = new FightSystem(2, 30.0);
 
 }
 
@@ -41,10 +45,11 @@ void setup() {
 void draw() {
   
   // Background
+  fightScene.setPlayersName("Player 1", "Player 2");
   fightScene.setGradient(0, 0, width/2, height, b1, b2, X_AXIS);
   fightScene.setGradient(width/2, 0, width/2, height, b2, b1, X_AXIS);
 
-  fightScene.setPlayersName("Player 1", "Player 2");
+  //
   
   
   textSize(10);
