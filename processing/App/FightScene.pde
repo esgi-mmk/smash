@@ -1,3 +1,6 @@
+int textPlace[];
+
+
 class FightScene {
 
   void setPlayersName(String playerOne, String playerTwo){
@@ -7,9 +10,13 @@ class FightScene {
   
   textSize(height/17);
   text(playerTwo, width/1.45, height/10);
+  
+  textPlace = new int[2];
+  textPlace[0] = 1; 
+  textPlace[1] = 1;
   }
   
-
+  
   void setGradient(int x, int y, float w, float h, color c1, color c2, int axis ) {
   
     noFill();
@@ -31,5 +38,58 @@ class FightScene {
       }
     }
   }
+  
+  
+  void printDamage(int player, int zone, float damages){
+    
+    String s = "";
+      
+    s += " " + damages/(zone+1) + " damages dealt !";  
+    
+    textSize(height/35);
+    
+    if(player-1 == 1){
+      testCritical(player-1, zone);
+      text(s, width/8, (height/6) + textPlace[0] );
+      textPlace[0] += height/20;
+    }
+    else{
+      testCritical(player-1, zone);
+      text(s, width/1.50, (height/6) + textPlace[1] );
+      textPlace[1] += height/20;
+    }
+    
+  }
+  
+  
+  void testCritical(int player, int zone){
+      
+      String critical = "Critical Hit !";
+      
+      if(zone == 0){
+        
+      if(player == 1){
+        text(critical, width/6, (height/6) + textPlace[0] );
+        textPlace[0] += height/25;
+      }
+      else{
+        text(critical, width/1.41, (height/6) + textPlace[1] );
+        textPlace[1] += height/25;
+    }
+    
+      }
+      
+  }
+  
+  
+  void printWinner(int player){
+    
+    String s = "Player " + player + " wins !";
+    
+    textSize(height/10);
+    text(s, width/3.8, (height/1.1));
+    
+  }
+
 
 }

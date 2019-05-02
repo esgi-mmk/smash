@@ -36,15 +36,18 @@ class FightSystem{
       
     }
     
-    if( activePlayers.size() > 1)
+    if( activePlayers.size() > 1 || activePlayers.size() == 0)
       return -1;
     else
       return activePlayers.pop(); 
   }
   
   
-  void calculateDamage(int player, float damages){
+    void calculateDamage(int player, int zone, float damages){
+    
+    hpRemaining[player-1] -= damages/(zone+1);
     
   }
+  
   
 }
