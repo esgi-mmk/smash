@@ -2,7 +2,11 @@ class FightScene {
 
   void setPlayersName(String playerOne, String playerTwo){
     
-    
+  textSize(height/17);
+  text(playerOne, width/6.5, height/10);
+  
+  textSize(height/17);
+  text(playerTwo, width/1.45, height/10);
   }
   
 
