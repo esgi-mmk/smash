@@ -18,6 +18,10 @@ const float MIN_VALUE_FOR_2G = 8.00;
 const float MIN_VALUE_FOR_4G = 4.50;
 const float MIN_VALUE_FOR_8G = 3.50;
 
+volatile byte interruptCounter = 0;
+int numberOfInterrupts = 0;
+
+
 const int VALUE_RESCALE_RATE = 4;
 const unsigned int localPort = 8888;  // local port to listen for OSC packets (not used for sending)
 const unsigned int outPort = 4559;    // remote port to receive OSC
@@ -41,7 +45,7 @@ void setup() {
     mpu6050.writeMPU6050(MPU6050_ACCEL_CONFIG, 0x10); // 8g
     //mpu6050.writeMPU6050(MPU6050_ACCEL_CONFIG, 0x08); // 4g
 
-
+    /*
     // Connect to WiFi network
     Serial.print("\nConnecting to ");
     Serial.println(ssid);
@@ -59,20 +63,41 @@ void setup() {
 
     Serial.print("Local port: ");
     Serial.println(Udp.localPort());
+    */
 
     pinMode(D5, INPUT_PULLUP);
     pinMode(D6, INPUT_PULLUP);
     pinMode(D7, INPUT_PULLUP);
+
+    attachInterrupt(digitalPinToInterrupt(D5), onTouchD5, FALLING);
+    attachInterrupt(digitalPinToInterrupt(D6), onTouchD6, FALLING);
+    attachInterrupt(digitalPinToInterrupt(D7), onTouchD7, FALLING);
     
     pinMode(LED_BUILTIN, OUTPUT);
 
 
 }
 
+void onTouchD5() {
+  float result = getPressure();
+  Serial.println(result);
+  
+}
+
+void onTouchD6() {
+  float result = getPressure();
+  Serial.println(result);
+}
+
+void onTouchD7() {
+  float result = getPressure();
+  Serial.println(result);
+}
+
+
 void loop() {
     // loop every 10 ms;
-    // 10ms => 100Hz
-    if(millis() - timeStamp > 10){
+    /*if(millis() - timeStamp > 10){
       mpu6050.update();
       timeStamp = millis();
       
@@ -90,7 +115,7 @@ void loop() {
           if(maxValue <= value){
             maxValue = value; 
           }
-        //if time spent is more than 1 sec than we stop checking values
+          
           if(millis() - timer > 1000){
             flag = !flag;
           }
@@ -114,7 +139,7 @@ void loop() {
         //Serial.println("Waiting for button press")
       }
 
-    }
+    }*/
 }
 
 int getAreaTouched(){
@@ -145,6 +170,24 @@ int getAreaTouched(){
   }
 
   return -1;
+}
+
+float getPressure(){
+  float maxValue = 0.0;
+  bool flag = false;
+  long timer = millis(); 
+  
+  while(!flag){
+    float value = checkPressure();
+    Serial.println(value);
+    if(maxValue <= value){
+      maxValue = value; 
+    }
+    
+    if(millis() - timer > 1000){
+      flag = !flag;
+    }
+  }
 }
 
 float checkPressure(){
