@@ -6,10 +6,10 @@ class FightScene {
   void setPlayersName(String playerOne, String playerTwo){
     
   textSize(height/17);
-  text(playerOne, width/6.5, height/10);
+  text(playerOne, width/25, height/10);
   
   textSize(height/17);
-  text(playerTwo, width/1.45, height/10);
+  text(playerTwo, width/1.8, height/10);
   
   textPlace = new int[2];
   textPlace[0] = 1; 
@@ -58,7 +58,6 @@ class FightScene {
       text(s, width/1.50, (height/6) + textPlace[1] );
       textPlace[1] += height/20;
     }
-    
   }
   
   
@@ -68,17 +67,16 @@ class FightScene {
       
       if(zone == 0){
         
-      if(player == 1){
-        text(critical, width/6, (height/6) + textPlace[0] );
-        textPlace[0] += height/25;
-      }
-      else{
-        text(critical, width/1.41, (height/6) + textPlace[1] );
-        textPlace[1] += height/25;
-    }
-    
-      }
-      
+        if(player == 1){
+          text(critical, width/6, (height/6) + textPlace[0] );
+          textPlace[0] += height/25;
+        }
+        else{
+          text(critical, width/1.41, (height/6) + textPlace[1] );
+          textPlace[1] += height/25;
+        }
+        
+      }   
   }
   
   
@@ -88,6 +86,35 @@ class FightScene {
     
     textSize(height/10);
     text(s, width/3.8, (height/1.1));
+    
+  }
+  
+  void drawBar(float positionX, float positionY, float health, float maxHealth){
+  
+    // Change color
+    if (health < 2.5)
+    {
+      fill(255, 0, 0);
+    }  
+    else if (health < 5)
+    {
+      fill(255, 200, 0);
+    }
+    else
+    {
+      fill(0, 255, 0);
+    }
+    
+    // Draw bar
+    noStroke();
+    // Get fraction 0->1 and multiply it by width of bar
+    float drawWidth = (health / maxHealth) * width/5;
+    rect(positionX, positionY, drawWidth, height/20);
+    
+    // Outline
+    stroke(0);
+    noFill();
+    rect(positionX, positionY, width/5, height/20);
     
   }
 

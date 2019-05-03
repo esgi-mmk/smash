@@ -5,9 +5,10 @@
 
 // Constants
 int Y_AXIS = 1, X_AXIS = 2;
+
+// Global
+int playerTurn = 1, toDraw = 0, zone, endOfBattle;
 color b1, b2, c1, c2;
-int playerTurn = 1, zone, endOfBattle;
-int toDraw = 0;
 float str;
 
 //Data Reception
@@ -23,7 +24,6 @@ OscP5 oscP5;
 void setup() {
   
   size(1080, 720);
-  //frameRate(250);
   
   surface.setTitle("Smash");
   
@@ -45,7 +45,6 @@ void setup() {
 void draw() {
   
   // Background
-  
   if(toDraw == 0){
     fightScene.setGradient(0, 0, width/2, height, b1, b2, X_AXIS);
     fightScene.setGradient(width/2, 0, width/2, height, b2, b1, X_AXIS);
@@ -57,59 +56,42 @@ void draw() {
   
     if(endOfBattle != -1)
       fightScene.printWinner(endOfBattle+1);
-    else{
-      if(playerTurn == 1)
-        playerTurn = 2;
-       else
-         playerTurn = 1;
-    }
+    else
+     playerTurn = (playerTurn == 1) ? 2 : 1 ;    
   }
+  
+  fightScene.drawBar(width/3, height/10, fightSystem.hpRemaining[0], fightSystem.hp[0]);
+  fightScene.drawBar(width/0.5, height/10, fightSystem.hpRemaining[1], fightSystem.hp[1]);
+
   
 }
 
 
-/* incoming osc message are forwarded to the oscEvent method. */
+/* Incoming osc message are forwarded to the oscEvent method. */
 void oscEvent(OscMessage theOscMessage) {
 
   zone = theOscMessage.get(0).intValue();
   str = theOscMessage.get(1).floatValue();
   
-  println(zone);
-  println(str);
-  
   fightSystem.calculateDamage(playerTurn, zone, str);
-  fightScene.printDamage(playerTurn, zone, str);
 
   endOfBattle = fightSystem.checkBattleState();
-  /*
-  if(endOfBattle != -1)
-    fightScene.printWinner(endOfBattle+1);
-  else{
-    if(playerTurn == 1)
-      playerTurn = 2;
-     else
-       playerTurn = 1;
-  }
-  */
+ 
   redraw();
   
 }
 
 
+// Test Function in order to simulate the recept of data 
 void oscEventFake() {
   
   fightSystem.calculateDamage(playerTurn, 0, 10);
   fightScene.printDamage(playerTurn, 0, 10);
 
-  int endOfBattle = fightSystem.checkBattleState();
+  endOfBattle = fightSystem.checkBattleState();
   
   if(endOfBattle != -1)
-    fightScene.printWinner(endOfBattle+1);
-  else{
-    if(playerTurn == 1)
-      playerTurn = 2;
-     else
-       playerTurn = 1;
-  }
-  
+      fightScene.printWinner(endOfBattle+1);
+    else
+     playerTurn = (playerTurn == 1) ? 2 : 1 ;  
 }
