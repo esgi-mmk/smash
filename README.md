@@ -55,6 +55,7 @@ Procedure:
 
 - Some Aluminum foil
 
+- Accelerometer
 
 ### Installing
 
@@ -88,4 +89,13 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ![alt text](https://zupimages.net/up/19/18/w476.jpg)
 ![alt text](https://zupimages.net/up/19/18/ygx3.png)
 
+All you need is an object like a box, or something than can hold a target enough big to be hitting by a ball. A shoes box might be a little bit to small.
 
+We used a pizza box and aluminum. 
+![alt text](https://zupimages.net/up/19/18/gz0z.jpg)
+
+You will need to cut round pieces of aluminium as many as you want like that.
+![alt text](https://zupimages.net/up/19/18/jm50.jpg)
+![alt text](https://zupimages.net/up/19/18/4wor.jpg)
+
+To make our cabling we've work with a breadboard that we hocked to the back of the pizza box. The accelerometer is attached to the center of the pizza box just behind the target in order to receive the best ouput.
