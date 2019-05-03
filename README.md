@@ -1,15 +1,13 @@
 # Smash
 
 This project is the draft of a dart game.
-It is differentiated by its construction: The target is built around a Wimos, which recovers the value of the force of the thrown.
-A computer retrieves its information and translates this value into a point.
-The goal is to get more point than his opponent.
+It is differentiated by its construction: The target is built around a Wemos, which recovers the value of the force of the thrown.
+A computer retrieves this information and translates the value into a point.
+The goal is to get more point than our opponent.
 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
-See deployment for notes on how to deploy the project on a live system.
-
 ### Prerequisites
 
 ##### Arduino
@@ -49,17 +47,10 @@ Procedure:
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-```
-apt-get install ...
-```
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+Clone our repository. 
+In order to make this project run, you need to be on the same wifi network. 
+Launch package "smash_sensor" in Arduino software, and package "App" in processing. 
+Make sure the listening port chosen isn't taken.
 
 ## Contributing
 
@@ -78,3 +69,11 @@ See also the list of [contributors](https://github.com/esgi-mmk/smash/contributo
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+### Creation of the project 
+
+![alt text](https://zupimages.net/up/19/18/5h2j.jpg)
+![alt text](https://zupimages.net/up/19/18/rm0b.jpg)
+![alt text](https://zupimages.net/up/19/18/w476.jpg)
+
+
