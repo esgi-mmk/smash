@@ -60,10 +60,9 @@ void draw() {
      playerTurn = (playerTurn == 1) ? 2 : 1 ;    
   }
   
-  fightScene.drawBar(width/3, height/10, fightSystem.hpRemaining[0], fightSystem.hp[0]);
-  fightScene.drawBar(width/0.5, height/10, fightSystem.hpRemaining[1], fightSystem.hp[1]);
+  //fightScene.drawBar(width/4.5, height/19, fightSystem.hpRemaining[0], fightSystem.hp[0]);
+  //fightScene.drawBar(width-(width/4), height/19, fightSystem.hpRemaining[1], fightSystem.hp[1]);
 
-  
 }
 
 
