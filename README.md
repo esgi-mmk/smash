@@ -99,3 +99,26 @@ You will need to cut round pieces of aluminium as many as you want like that.
 ![alt text](https://zupimages.net/up/19/18/4wor.jpg)
 
 To make our cabling we've work with a breadboard that we hocked to the back of the pizza box. The accelerometer is attached to the center of the pizza box just behind the target in order to receive the best ouput.
+![alt text](https://zupimages.net/up/19/18/x43v.jpg)
+
+
+To make the sensor working, we start to think about digital reading of D5, D6, D7. We set them as pull_up using : 
+```
+  pinMode(D5, INPUT_PULLUP);
+```
+then reading d5, d6, d7 and waiting for a state change.
+
+
+Soon later, we realised that the detection was slower than expected. We managed that by looking something called interrupt using this code 
+```
+  attachInterrupt(digitalPinToInterrupt(D5), onTouchD5, FALLING);
+```
+The values read by the system were affected by the gravity, so we manage to delete the gravity factor from our read to make our project usable whatever the position of the accelerometer
+![alt_text](https://zupimages.net/up/19/18/cn5h.png)
+
+We also realise that the impact caught by the system used to hit the maximal value (saturation).
+![alt_text](https://zupimages.net/up/19/18/va2k.png)
+We decide to multiply this value by 8.
+
+We tested our project using the serial plotter. We can see that the reading time (in blue) is quitly delayed from the real impact (in green)
+![alt_text](https://zupimages.net/up/19/18/rocw.png)
