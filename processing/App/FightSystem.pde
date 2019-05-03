@@ -45,7 +45,7 @@ class FightSystem{
   
     void calculateDamage(int player, int zone, float damages){
     
-    hpRemaining[player-1] -= damages/(zone+1);
+    hpRemaining[player-1] -= (damages/(zone+1) * 2);
     
   }
   

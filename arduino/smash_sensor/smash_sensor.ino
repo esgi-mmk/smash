@@ -21,7 +21,7 @@ const float MIN_VALUE_FOR_8G = 3.50;
 volatile bool d5_touched, d6_touched, d7_touched = false;
 int numberOfInterrupts = 0;
 
-const int VALUE_RESCALE_RATE = 4;
+const int VALUE_RESCALE_RATE = 8;
 const unsigned int localPort = 8888;  // local port to listen for OSC packets (not used for sending)
 const unsigned int outPort = 4559;    // remote port to receive OSC
 TwoWire i2c;
@@ -39,8 +39,9 @@ void setup() {
   i2c.begin(D3, D4);
 
   mpu6050.begin();
-  //mpu6050.writeMPU6050(MPU6050_ACCEL_CONFIG, 0x18); // 16g
-  mpu6050.writeMPU6050(MPU6050_ACCEL_CONFIG, 0x10); // 8g
+  
+  mpu6050.writeMPU6050(MPU6050_ACCEL_CONFIG, 0x18); // 16g
+  //mpu6050.writeMPU6050(MPU6050_ACCEL_CONFIG, 0x10); // 8g
   //mpu6050.writeMPU6050(MPU6050_ACCEL_CONFIG, 0x08); // 4g
 
 
@@ -102,10 +103,10 @@ void onTouchD7() {
 void loop() {
   // loop every 10 ms;
   if (millis() - timeStamp > 10) {
-    mpu6050.update();
     timeStamp = millis();
 
     if (d5_touched == true || d6_touched == true || d7_touched == true) {
+      mpu6050.update();
       
       int area = -1;
       if (d5_touched) {
@@ -136,7 +137,7 @@ void loop() {
           flag = !flag;
         }
       }
-      flag = !flag;
+      flag = 0;
 
       
       Serial.println(maxValue);
@@ -144,7 +145,8 @@ void loop() {
       d6_touched = false;
       d7_touched = false;
 
-      sendValues(maxValue, area);
+      if(maxValue > 0)
+        sendValues(maxValue, area);
 
       //delay(2000);
     }
@@ -189,7 +191,7 @@ void loop() {
   }
 }
 
-int getAreaTouched() {
+/*int getAreaTouched() {
 
   boolean btnPressed1 = !digitalRead(D5);
   boolean btnPressed2 = !digitalRead(D6);
@@ -217,7 +219,7 @@ int getAreaTouched() {
   }
 
   return -1;
-}
+}*/
 
 float getPressure() {
   float maxValue = 0.0;

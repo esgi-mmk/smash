@@ -6,7 +6,9 @@
 // Constants
 int Y_AXIS = 1, X_AXIS = 2;
 color b1, b2, c1, c2;
-int playerTurn = 1;
+int playerTurn = 1, zone, endOfBattle;
+int toDraw = 0;
+float str;
 
 //Data Reception
 import oscP5.*;
@@ -34,7 +36,7 @@ void setup() {
   /* start oscP5, listening for incoming messages at port 4559 */
   oscP5 = new OscP5(this,4559);
   
-  fightSystem = new FightSystem(2, 30.0);
+  fightSystem = new FightSystem(2, 10.0);
 
   noLoop();
 }
@@ -43,11 +45,25 @@ void setup() {
 void draw() {
   
   // Background
-  fightScene.setGradient(0, 0, width/2, height, b1, b2, X_AXIS);
-  fightScene.setGradient(width/2, 0, width/2, height, b2, b1, X_AXIS);
-  fightScene.setPlayersName("Player 1", "Player 2");
   
+  if(toDraw == 0){
+    fightScene.setGradient(0, 0, width/2, height, b1, b2, X_AXIS);
+    fightScene.setGradient(width/2, 0, width/2, height, b2, b1, X_AXIS);
+    fightScene.setPlayersName("Player 1", "Player 2");
+    toDraw = 1;
+  }
+  else{
+    fightScene.printDamage(playerTurn, zone, str);
   
+    if(endOfBattle != -1)
+      fightScene.printWinner(endOfBattle+1);
+    else{
+      if(playerTurn == 1)
+        playerTurn = 2;
+       else
+         playerTurn = 1;
+    }
+  }
   
 }
 
@@ -55,8 +71,8 @@ void draw() {
 /* incoming osc message are forwarded to the oscEvent method. */
 void oscEvent(OscMessage theOscMessage) {
 
-  int zone = theOscMessage.get(0).intValue();
-  float str = theOscMessage.get(1).floatValue();
+  zone = theOscMessage.get(0).intValue();
+  str = theOscMessage.get(1).floatValue();
   
   println(zone);
   println(str);
@@ -64,16 +80,18 @@ void oscEvent(OscMessage theOscMessage) {
   fightSystem.calculateDamage(playerTurn, zone, str);
   fightScene.printDamage(playerTurn, zone, str);
 
-  int endOfBattle = fightSystem.checkBattleState();
-  
+  endOfBattle = fightSystem.checkBattleState();
+  /*
   if(endOfBattle != -1)
-    fightScene.printWinner(endOfBattle);
+    fightScene.printWinner(endOfBattle+1);
   else{
     if(playerTurn == 1)
       playerTurn = 2;
      else
        playerTurn = 1;
   }
+  */
+  redraw();
   
 }
 

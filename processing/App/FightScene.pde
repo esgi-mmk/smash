@@ -44,7 +44,7 @@ class FightScene {
     
     String s = "";
       
-    s += " " + damages/(zone+1) + " damages dealt !";  
+    s += " " + (damages/(zone+1) * 2) + " damages dealt !";  
     
     textSize(height/35);
     
