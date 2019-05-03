@@ -101,6 +101,7 @@ You will need to cut round pieces of aluminium as many as you want like that.
 To make our cabling we've work with a breadboard that we hocked to the back of the pizza box. The accelerometer is attached to the center of the pizza box just behind the target in order to receive the best ouput.
 ![alt text](https://zupimages.net/up/19/18/x43v.jpg)
 
+The tiers are alternatively connected to a pin and at the ground, to separate and group all the tiers that you can touch.
 
 To make the sensor working, we start to think about digital reading of D5, D6, D7. We set them as pull_up using : 
 ```
