@@ -45,6 +45,17 @@ Procedure:
 [github.com/processing/processing/wiki/How-to-Install-a-Contributed-Library](https://github.com/processing/processing/wiki/How-to-Install-a-Contributed-Library)
 
 
+#### Equipment used
+
+- 1 WeMos D1 mini 
+
+- 1 BreadBoard
+
+- 1 Pizza Box
+
+- Some Aluminum foil
+
+
 ### Installing
 
 Clone our repository. 
