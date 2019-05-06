@@ -120,11 +120,11 @@ Soon later, we realised that the detection was slower than expected. We managed 
 ```
 The values read by the system were affected by the gravity, so we manage to delete the gravity factor from our read to make our project usable whatever the position of the accelerometer
 
- <p align="center"><img width="460" height="300" src="https://zupimages.net/up/19/18/cn5h.jpg"></p>
+ <p align="center"><img width="460" height="300" src="https://zupimages.net/up/19/18/cn5h.png"></p>
 
 We also realise that the impact caught by the system used to hit the maximal value (saturation).
- <p align="center"><img width="460" height="300" src="https://zupimages.net/up/19/18/va2k.jpg"></p>
+ <p align="center"><img width="460" height="300" src="https://zupimages.net/up/19/18/va2k.png"></p>
 We decide to multiply this value by 8.
 
 We tested our project using the serial plotter. We can see that the reading time (in blue) is quitly delayed from the real impact (in green)
- <p align="center"><img width="460" height="300" src="https://zupimages.net/up/19/18/rocw.jpg"></p>
+ <p align="center"><img width="460" height="300" src="https://zupimages.net/up/19/18/rocw.png"></p>
