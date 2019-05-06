@@ -84,22 +84,26 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ### Creation of the project 
 
-![alt text](https://zupimages.net/up/19/18/5h2j.jpg)
-![alt text](https://zupimages.net/up/19/18/rm0b.jpg)
-![alt text](https://zupimages.net/up/19/18/w476.jpg)
-![alt text](https://zupimages.net/up/19/18/ygx3.png)
+
+<p align="center">
+ <img width="460" height="300" src="https://zupimages.net/up/19/18/5h2j.jpg">
+ <img width="460" height="300" src="https://zupimages.net/up/19/18/rm0b.jpg">
+ <img width="460" height="300" src="https://zupimages.net/up/19/18/w476.jpg">
+ <img width="460" height="300" src="https://zupimages.net/up/19/18/ygx3.png">
+</p>
 
 All you need is an object like a box, or something than can hold a target enough big to be hitting by a ball. A shoes box might be a little bit to small.
 
 We used a pizza box and aluminum. 
-![alt text](https://zupimages.net/up/19/18/gz0z.jpg)
+
+ <p align="center"><img width="460" height="300" src="https://zupimages.net/up/19/18/gz0z.jpg"></p>
 
 You will need to cut round pieces of aluminium as many as you want like that.
-![alt text](https://zupimages.net/up/19/18/jm50.jpg)
-![alt text](https://zupimages.net/up/19/18/4wor.jpg)
+ <p align="center"><img width="460" height="300" src="https://zupimages.net/up/19/18/jm50.jpg"></p>
+ <p align="center"><img width="460" height="300" src="https://zupimages.net/up/19/18/4wor.jpg"></p>
 
 To make our cabling we've work with a breadboard that we hocked to the back of the pizza box. The accelerometer is attached to the center of the pizza box just behind the target in order to receive the best ouput.
-![alt text](https://zupimages.net/up/19/18/x43v.jpg)
+ <p align="center"><img width="460" height="300" src="https://zupimages.net/up/19/18/x43v.jpg"></p>
 
 The tiers are alternatively connected to a pin and at the ground, to separate and group all the tiers that you can touch.
 
@@ -115,11 +119,12 @@ Soon later, we realised that the detection was slower than expected. We managed 
   attachInterrupt(digitalPinToInterrupt(D5), onTouchD5, FALLING);
 ```
 The values read by the system were affected by the gravity, so we manage to delete the gravity factor from our read to make our project usable whatever the position of the accelerometer
-![alt_text](https://zupimages.net/up/19/18/cn5h.png)
+
+ <p align="center"><img width="460" height="300" src="https://zupimages.net/up/19/18/cn5h.jpg"></p>
 
 We also realise that the impact caught by the system used to hit the maximal value (saturation).
-![alt_text](https://zupimages.net/up/19/18/va2k.png)
+ <p align="center"><img width="460" height="300" src="https://zupimages.net/up/19/18/va2k.jpg"></p>
 We decide to multiply this value by 8.
 
 We tested our project using the serial plotter. We can see that the reading time (in blue) is quitly delayed from the real impact (in green)
-![alt_text](https://zupimages.net/up/19/18/rocw.png)
+ <p align="center"><img width="460" height="300" src="https://zupimages.net/up/19/18/rocw.jpg"></p>
